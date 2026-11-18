@@ -240,14 +240,14 @@ export default function UploadSongs() {
             onClick={() => handleProjectClick("new project")}
             className="w-full px-6 py-3 rounded-full border border-cyan-400/30 text-cyan-400 hover:bg-cyan-400/10 transition-colors"
           >
-            New Project
+            REGISTER YOUR NEW SONG
           </button>
 
           <button
             onClick={() => handleProjectClick("hybrid project")}
             className="w-full px-6 py-3 rounded-full border border-cyan-400/30 text-cyan-400 hover:bg-cyan-400/10 transition-colors"
           >
-            Hybrid Project
+            REGISTER YOUR HYBRID SONG
           </button>
 
           <button
@@ -258,7 +258,7 @@ export default function UploadSongs() {
           </button>
         </div>
         <h1 className="text-cyan-400 text-xl font-extrabold mb-4 drop-shadow-[0_0_15px_rgba(34,211,238,1)]">
-          YOUR SONGS
+          YOUR SONGS STATUS
         </h1>
 
         {/* Submitted Song Section */}

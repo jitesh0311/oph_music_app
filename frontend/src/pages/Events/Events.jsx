@@ -106,7 +106,7 @@ export default function Events() {
         amount: (parseInt(data.registrationFee_normal) / 2).toFixed(0),
         event_id: data.event_id,
         returnPath: "/dashboard/events",
-        heading: "Complete Event Registration",
+        heading: "Your New Event Fee —",
         from: "Event Registration",
       },
     });

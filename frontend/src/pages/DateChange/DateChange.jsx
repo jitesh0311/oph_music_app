@@ -86,7 +86,7 @@ export default function DateChangeForm() {
           new_booking_date: formData.newDate,
           returnPath: "/dashboard/time-calendar",
           amount: 100,
-          heading: "Payment Required (admin approval needed after payment)",
+          heading: "Date Change Fee — ₹100/- (Subject to Admin Approval upon Payment.)",
           from: "Release date change",
           reason: formData.reason,
         },

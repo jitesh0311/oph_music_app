@@ -644,7 +644,7 @@ export default function ArtistSpotlight() {
             {activeTab === "leaderboard" && (
               <div className="space-y-4 lg:px-0 px-6">
                 <h3 className="text-xl font-semibold text-cyan-400">
-                  Note (How to improve ranking):
+                  Note: Want to Improve the Rankings? Here’s How -
                 </h3>
                 <p className="text-gray-500 whitespace-pre-line">{notes}</p>
               </div>

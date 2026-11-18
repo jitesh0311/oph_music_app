@@ -29,7 +29,6 @@ const PaymentScreen = () => {
   const [oph_id, setoph_id] = useState("");
 
   console.log(user_type);
-  
 
   const {
     amount = 0,
@@ -107,10 +106,15 @@ const PaymentScreen = () => {
           let searchName;
           console.log(from);
           console.log(user_type);
-          
-          const isLyricalSelected = lyrical_services === true || lyrical_services === "true" || lyrical_services === 1;
-          const projectType = location.state?.project_type || location.state?.projectType || "";
-          const isPaidInAdvance = String(projectType).toLowerCase().trim() === "paid in advance";
+
+          const isLyricalSelected =
+            lyrical_services === true ||
+            lyrical_services === "true" ||
+            lyrical_services === 1;
+          const projectType =
+            location.state?.project_type || location.state?.projectType || "";
+          const isPaidInAdvance =
+            String(projectType).toLowerCase().trim() === "paid in advance";
           if (isLyricalSelected) {
             // Paid in advance + lyrical = "lyrics service" (399). Otherwise "lyrical video"
             if (isPaidInAdvance) {
@@ -178,22 +182,33 @@ const PaymentScreen = () => {
     } finally {
       setLoading(false);
     }
-  }, [from, lyrical_services, event_id, location.state?.project_type, location.state?.projectType]);
+  }, [
+    from,
+    lyrical_services,
+    event_id,
+    location.state?.project_type,
+    location.state?.projectType,
+  ]);
 
-  const normName = (s) => String(s ?? "").toLowerCase().trim();
+  const normName = (s) =>
+    String(s ?? "")
+      .toLowerCase()
+      .trim();
 
   /** Prefer exact name match, then shortest name that still contains `search` (avoids wrong row when multiple names overlap). */
   const findCostingRowByName = (search) => {
     const needle = normName(search);
     if (!needle) return null;
-    const arr = (Array.isArray(costingData) ? costingData : [costingData]).filter(
-      (c) => c?.name,
-    );
+    const arr = (
+      Array.isArray(costingData) ? costingData : [costingData]
+    ).filter((c) => c?.name);
     const exact = arr.find((c) => normName(c.name) === needle);
     if (exact) return exact;
     const candidates = arr.filter((c) => normName(c.name).includes(needle));
     if (candidates.length === 0) return null;
-    candidates.sort((a, b) => normName(a.name).length - normName(b.name).length);
+    candidates.sort(
+      (a, b) => normName(a.name).length - normName(b.name).length,
+    );
     return candidates[0];
   };
 
@@ -205,7 +220,8 @@ const PaymentScreen = () => {
   // Function to get the appropriate amount based on the matched costing data or fallback from costing table
   const getDisplayAmount = () => {
     // Repayment: use exact amount for rejected payment(s) only
-    const repay = paymentRepayAmount ?? (isFixingRejected && amount ? amount : null);
+    const repay =
+      paymentRepayAmount ?? (isFixingRejected && amount ? amount : null);
     if (repay != null && repay > 0) return parseFloat(repay);
 
     if (matchedCosting) {
@@ -214,17 +230,27 @@ const PaymentScreen = () => {
 
     // Fallback: derive from costing table by name
     if (lyrical_services) {
-      return getCostByName("lyrics service") ?? getCostByName("lyrical video") ?? amount;
+      return (
+        getCostByName("lyrics service") ??
+        getCostByName("lyrical video") ??
+        amount
+      );
     }
     if (!from || from === "Registration") {
       return getCostByName("registration") ?? amount;
     }
-    if (from === "Song Repayment" || from === "Song Registration" || from === "Date booking") {
+    if (
+      from === "Song Repayment" ||
+      from === "Song Registration" ||
+      from === "Date booking"
+    ) {
       return getCostByName("song registration") ?? amount;
     }
     if (from === "Event Registration") return getCostByName("event") ?? amount;
-    if (from === "Release date change") return getCostByName("release date change") ?? amount;
-    if (from === "Special artist song registration") return getCostByName("special artist") ?? amount;
+    if (from === "Release date change")
+      return getCostByName("release date change") ?? amount;
+    if (from === "Special artist song registration")
+      return getCostByName("special artist") ?? amount;
     return amount;
   };
 
@@ -234,8 +260,10 @@ const PaymentScreen = () => {
     let item = null;
     if (lyrical_services)
       item =
-        findCostingRowByName("lyrics service") || findCostingRowByName("lyrical video");
-    else if (!from || from === "Registration") item = findCostingRowByName("registration");
+        findCostingRowByName("lyrics service") ||
+        findCostingRowByName("lyrical video");
+    else if (!from || from === "Registration")
+      item = findCostingRowByName("registration");
     else if (
       from === "Song Repayment" ||
       from === "Song Registration" ||
@@ -264,17 +292,20 @@ const PaymentScreen = () => {
   // Sync song navigation when entering payment page for a song (e.g. after browser back from another tab).
   // Backend sets status to draft when not fixing a rejected step.
   useEffect(() => {
-    const isSongPayment = song_id && (from === "Song Registration" || from === "Song Repayment");
+    const isSongPayment =
+      song_id && (from === "Song Registration" || from === "Song Repayment");
     if (isSongPayment && ophid && headers?.Authorization && location.pathname) {
-      axiosApi.post(
-        "/update-song-navigation",
-        {
-          song_id,
-          oph_id: ophid,
-          next_page: location.pathname,
-        },
-        { headers }
-      ).catch(() => {});
+      axiosApi
+        .post(
+          "/update-song-navigation",
+          {
+            song_id,
+            oph_id: ophid,
+            next_page: location.pathname,
+          },
+          { headers },
+        )
+        .catch(() => {});
     }
   }, [song_id, from, ophid, headers, location.pathname]);
 
@@ -302,14 +333,20 @@ const PaymentScreen = () => {
       const toYYYYMMDD = (v) => {
         if (v == null || v === "") return null;
         const s = String(v).trim();
-        if (!s || s === "0000-00-00" || s.toLowerCase().startsWith("0000-00-00"))
+        if (
+          !s ||
+          s === "0000-00-00" ||
+          s.toLowerCase().startsWith("0000-00-00")
+        )
           return null;
         if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0, 10);
         const parts = s.split(/[/-T]/);
         if (parts.length >= 3) {
           const [a, b, c] = parts;
-          if (a.length === 4) return `${a}-${b.padStart(2, "0")}-${c.padStart(2, "0")}`;
-          if (c.length === 4) return `${c}-${b.padStart(2, "0")}-${a.padStart(2, "0")}`;
+          if (a.length === 4)
+            return `${a}-${b.padStart(2, "0")}-${c.padStart(2, "0")}`;
+          if (c.length === 4)
+            return `${c}-${b.padStart(2, "0")}-${a.padStart(2, "0")}`;
         }
         return null;
       };
@@ -364,7 +401,8 @@ const PaymentScreen = () => {
 
       if (!response.data?.success) {
         setError(
-          response.data?.message || "Payment processing failed. Please try again.",
+          response.data?.message ||
+            "Payment processing failed. Please try again.",
         );
         return;
       }
@@ -372,7 +410,10 @@ const PaymentScreen = () => {
       if (response.data.success && from == "Date booking") {
         {
           // For Date Booking repayment with linked song, pass song_id and song_name
-          const bookingDate = location.state.date || location.state.booking_date || location.state.release_date;
+          const bookingDate =
+            location.state.date ||
+            location.state.booking_date ||
+            location.state.release_date;
           const CalenderRes = await axiosApi.post(
             "/booking",
             {
@@ -467,8 +508,8 @@ const PaymentScreen = () => {
             } else {
               navigate("/dashboard/success", {
                 state: {
-                  heading: "Your Song Registration has been done successfully!",
-                  btnText: "Register another song",
+                  heading: "Your Song Is Officially Registered!",
+                  btnText: "View Song Status",
                   redirectTo: "/dashboard/upload-song",
                 },
               });
@@ -502,8 +543,8 @@ const PaymentScreen = () => {
         if (response.data.success) {
           navigate("/dashboard/success", {
             state: {
-              heading: "Your Song Registration has been done successfully!",
-              btnText: "Register another song",
+              heading: "Your Song Is Officially Registered!",
+              btnText: "View Song Status",
               redirectTo: "/dashboard/upload-song",
             },
           });
@@ -558,8 +599,8 @@ const PaymentScreen = () => {
           // Default behavior
           navigate("/dashboard/success", {
             state: {
-              heading: "Your Song Registration has been done successfully!",
-              btnText: "View Song Registration",
+              heading: "Your Song Is Officially Registered!",
+              btnText: "View Song Status",
               redirectTo: "/dashboard/upload-song",
             },
           });
@@ -568,7 +609,8 @@ const PaymentScreen = () => {
         // External users: booking created by PaymentService, navigate to success
         // Internal users: event_participants updated by PaymentService, /event_part is legacy
         const isExternal = location.state?.outside_user === true;
-        const redirectTo = location.state?.returnPath || "/events/online-music-events";
+        const redirectTo =
+          location.state?.returnPath || "/events/online-music-events";
 
         if (isExternal) {
           navigate("/success", {
@@ -594,8 +636,8 @@ const PaymentScreen = () => {
           if (eventResponse.status === 201) {
             navigate("/dashboard/success", {
               state: {
-                heading: "Your Event Spot has been booked Successfully.",
-                btnText: "View Events",
+                heading: "You’re In! Successfully Registered for the Event!",
+                btnText: "Back to Events",
                 redirectTo: location.state?.returnPath || "/dashboard/events",
               },
             });
@@ -608,8 +650,8 @@ const PaymentScreen = () => {
         {
           navigate("/dashboard/pending", {
             state: {
-              heading: "Your request is under review",
-              btnText: "Back to Home",
+              heading: "Your Song Is Successfully Submitted for Review!",
+              btnText: "Back to Manage",
               redirectTo: "/dashboard",
             },
           });
@@ -617,24 +659,26 @@ const PaymentScreen = () => {
       } else if (response.data.success) {
         const path = response.data.step;
         console.log(path);
-        
+
         navigate(path);
       }
     } catch (err) {
       console.error("Payment error:", err);
       const serverMessage =
         err.response?.data?.message || err.response?.data?.error;
-      setError(
-        serverMessage || "Payment processing failed. Please try again.",
-      );
+      setError(serverMessage || "Payment processing failed. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   const handleCancel = () => {
-    const isSongPayment = song_id && (from === "Song Registration" || from === "Song Repayment");
-    const pathToSet = backPathOrReturn && backPathOrReturn.trim() !== "" ? backPathOrReturn : "/dashboard/upload-song/video-metadata";
+    const isSongPayment =
+      song_id && (from === "Song Registration" || from === "Song Repayment");
+    const pathToSet =
+      backPathOrReturn && backPathOrReturn.trim() !== ""
+        ? backPathOrReturn
+        : "/dashboard/upload-song/video-metadata";
 
     if (isSongPayment && ophid && headers?.Authorization && pathToSet) {
       // Set song to draft immediately when leaving payment without paying (so list shows Draft, not Under Review)
@@ -646,7 +690,7 @@ const PaymentScreen = () => {
             oph_id: ophid,
             next_page: pathToSet,
           },
-          { headers }
+          { headers },
         )
         .catch(() => {})
         .finally(() => {
@@ -654,8 +698,10 @@ const PaymentScreen = () => {
             replace: true,
             state: {
               from: location.state?.from,
-              booking_date: location.state?.release_date ?? location.state?.booking_date,
-              release_date: location.state?.release_date ?? location.state?.booking_date,
+              booking_date:
+                location.state?.release_date ?? location.state?.booking_date,
+              release_date:
+                location.state?.release_date ?? location.state?.booking_date,
               song_id: location.state?.song_id,
               songName: location.state?.songName,
               project_type: location.state?.project_type,
@@ -668,8 +714,10 @@ const PaymentScreen = () => {
         replace: true,
         state: {
           from: location.state?.from,
-          booking_date: location.state?.release_date ?? location.state?.booking_date,
-          release_date: location.state?.release_date ?? location.state?.booking_date,
+          booking_date:
+            location.state?.release_date ?? location.state?.booking_date,
+          release_date:
+            location.state?.release_date ?? location.state?.booking_date,
           song_id: location.state?.song_id,
           songName: location.state?.songName,
           project_type: location.state?.project_type,
@@ -681,12 +729,21 @@ const PaymentScreen = () => {
 
   return (
     <div className="relative">
-      {loading && <Loading />}
+      {loading && (
+        <div className="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-400"></div>
+          <p className="mt-4 text-cyan-400 text-center">
+            Your transaction is being processed. Please wait a moment.
+          </p>
+        </div>
+      )}
       <div className="bg-black min-h-[100vh] text-white flex flex-col items-center justify-center px-[16px] py-[16px] md:p-8">
         <h1 className="text-cyan-400 text-xl font-extrabold mb-4 drop-shadow-[0_0_15px_rgba(34,211,238,1)] text-center sm:pt-0 pt-8">
           {heading}{" "}
           <span className="text-cyan-400">
-            ₹{Math.round(Number(getDisplayAmount()) || 0)}/-
+            {from === "Release date change"
+              ? ""
+              : `₹${Math.round(Number(getDisplayAmount()) || 0)}/-`}
           </span>
         </h1>
 

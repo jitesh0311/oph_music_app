@@ -79,9 +79,19 @@ export default function RequestTicketForm() {
     const testCategories = [
       { id: "1", name: "General Enquiry " },
       { id: "2", name: "Related to Profile" },
-      { id: "3", name: "Change Payment Account" },
-      { id: "4", name: "Others" },
+      { id: "3", name: "Song Registration/Calendar" },
+      { id: "4", name: "Leaderboard/KPI Questions" },
+      { id: "5", name: "Events" },
+      { id: "6", name: "Change Bank Account" },
+      { id: "6", name: "Income Enquiry" },
+      { id: "6", name: "Feature Request" },
+      { id: "6", name: "Partnership & Business" },
+      { id: "6", name: "Feedback & Suggestions" },
+      { id: "6", name: "Technical Issue/Bug" },
+      { id: "6", name: "Others" },
     ];
+
+
     setTicketCategories(testCategories);
   };
 
@@ -322,7 +332,7 @@ export default function RequestTicketForm() {
 
         {/* Submitted Requests List */}
         <div className="px-0 mb-[24px] lg:p-4 lg:mb-6">
-          <h2 className="text-lg font-semibold mb-4">Submitted Requests</h2>
+          <h2 className="text-lg font-semibold mb-4">Your Submitted Requests:</h2>
           {tickets?.length > 0 ? (
             <div className="space-y-3">
               {tickets.map((ticket) => (
@@ -371,7 +381,7 @@ export default function RequestTicketForm() {
           {/* Profile Code */}
           <div className="space-y-2">
             <label className="block">
-              Profile Code ID <span className="text-red-500">*</span>
+              OPH Artist Code <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -385,7 +395,7 @@ export default function RequestTicketForm() {
 
           <div className="space-y-2">
             <label className="block">
-              Category <span className="text-red-500">*</span>
+              Request Category<span className="text-red-500">*</span>
             </label>
             <FilterSelect
               value={formData.category}
@@ -414,7 +424,7 @@ export default function RequestTicketForm() {
           {/* Description */}
           <div className="space-y-2">
             <label className="block">
-              Description <span className="text-red-500">*</span>
+              Describe Your Concern <span className="text-red-500">*</span>
             </label>
             <textarea
               name="description"
@@ -439,7 +449,7 @@ export default function RequestTicketForm() {
                 <Upload className="w-6 h-6 text-gray-400" />
               </div>
               <span className="text-gray-400">
-                Upload Attachment (Optional)
+                Upload Any Image Attachment (Optional)
               </span>
             </label>
             <input

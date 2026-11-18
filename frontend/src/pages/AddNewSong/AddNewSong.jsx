@@ -200,6 +200,7 @@ const AddNewSong = () => {
             } else if (formData.songType === "free" && isFree === false) {
               navigate("/auth/payment", {
                 state: {
+                  heading: "Add Your Song in EPK Fee —",
                   from: "Special artist song registration",
                   song_id: data[0].song_id,
                   backPath: "/dashboard/add-new-song",
@@ -222,6 +223,7 @@ const AddNewSong = () => {
             ) {
               navigate("/auth/payment", {
                 state: {
+                  heading: "Add Your Song in EPK Fee —",
                   from: "Special artist song registration",
                   song_id: data[0].song_id,
                   backPath: "/dashboard/add-new-song",
@@ -240,6 +242,7 @@ const AddNewSong = () => {
             } else {
               navigate("/auth/payment", {
                 state: {
+                  heading: "Add Your Song in EPK Fee —",
                   from: "Special artist song registration",
                   song_id: data[0].song_id,
                   backPath: "/dashboard/add-new-song",
@@ -274,7 +277,7 @@ const AddNewSong = () => {
           <NavbarRight />
         </div>
         <h2 className="text-[#5DC9DE] text-2xl sm:text-3xl font-bold uppercase drop-shadow-[0_0_15px_rgba(34,211,238,1)]">
-          Add New Song{" "}
+          ADD SONG TO YOUR PROFILE{" "}
         </h2>
         <div className="hidden lg:block">
           <NavbarRight />
@@ -295,7 +298,7 @@ const AddNewSong = () => {
             value={formData.songName}
             onChange={handleChange}
             className="w-full bg-gray-800/50 border border-gray-700 rounded-full p-3 focus:outline-none focus:border-cyan-400"
-            placeholder="Type your song name here"
+            placeholder="Type the song name here"
           />
           {errors.songName && (
             <p className="text-red-500 text-sm">{errors.songName}</p>
@@ -313,7 +316,7 @@ const AddNewSong = () => {
             value={formData.views}
             onChange={handleChange}
             className="w-full bg-gray-800/50 border border-gray-700 rounded-full p-3 focus:outline-none focus:border-cyan-400"
-            placeholder="Enter number of views"
+            placeholder="Add the views in numbers"
           />
           {errors.views && (
             <p className="text-red-500 text-sm">{errors.views}</p>
@@ -331,7 +334,7 @@ const AddNewSong = () => {
             value={formData.credits}
             onChange={handleChange}
             className="w-full bg-gray-800/50 border border-gray-700 rounded-full p-3 focus:outline-none focus:border-cyan-400"
-            placeholder="Type credits here"
+            placeholder="Type the song credits here"
           />
           {errors.credits && (
             <p className="text-red-500 text-sm">{errors.credits}</p>
@@ -341,7 +344,7 @@ const AddNewSong = () => {
         {/* Time */}
         <div className="w-full max-w-unset lg:max-w-[764px]">
           <p className="text-[17px] font-semibold text-white mt-[32px] mb-[12px]">
-            Time :
+            Song Duration :
           </p>
           {/* <input
             type="text"
@@ -358,7 +361,7 @@ const AddNewSong = () => {
             value={formData.time}
             onChange={handleChange}
             className="w-full bg-gray-800/50 border border-gray-700 rounded-full p-3 focus:outline-none focus:border-cyan-400"
-            placeholder="mm:ss"
+            placeholder="Add the duration in mins:secs – 1:25"
           />
 
           {errors.time && <p className="text-red-500 text-sm">{errors.time}</p>}
@@ -367,7 +370,7 @@ const AddNewSong = () => {
         {/* Proof */}
         <div className="w-full max-w-unset lg:max-w-[764px]">
           <p className="text-[17px] font-semibold text-white mt-[32px] mb-[12px]">
-            Proof :
+            Proof Link :
           </p>
           <input
             type="text"
@@ -375,7 +378,7 @@ const AddNewSong = () => {
             value={formData.proof}
             onChange={handleChange}
             className="w-full bg-gray-800/50 border border-gray-700 rounded-full p-3 focus:outline-none focus:border-cyan-400"
-            placeholder="Add your link here"
+            placeholder="Paste any proof link here"
           />
           {errors.proof && (
             <p className="text-red-500 text-sm">{errors.proof}</p>
@@ -401,7 +404,7 @@ const AddNewSong = () => {
               <div className="flex items-center flex-col gap-3">
                 <Plus className="w-8 h-8 text-gray-500" />
                 <p className="font-medium text-white text-[21px]">
-                  Upload Audio File
+                  Upload Your Audio File
                 </p>
               </div>
             ) : (
@@ -452,7 +455,7 @@ const AddNewSong = () => {
       {status.length > 0 && (
         <section className="mb-[20px]">
           <h1 className="font-extrabold text-[35px] lg:text-[55px] mt-[20px] md:mt-[55px] text-[#5DC9DE]">
-            Status
+            GET YOUR SONG UPDATE STATUS
           </h1>
 
           {/* Mobile card layout */}
@@ -480,7 +483,7 @@ const AddNewSong = () => {
                   </div>
                   <div>
                     <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-1">
-                      Song Type
+                      Type
                     </p>
                     <p className="text-white font-bold text-base uppercase">
                       {stat.song_type}
@@ -510,6 +513,7 @@ const AddNewSong = () => {
                         ) {
                           navigate("/auth/payment", {
                             state: {
+                              heading: "Add Your Song in EPK Fee —",
                               from: "Special artist song registration",
                               song_id: stat.song_id,
                               backPath: "/dashboard/add-new-song",
@@ -528,6 +532,7 @@ const AddNewSong = () => {
                         } else if (s === "payment rejected") {
                           navigate("/auth/payment", {
                             state: {
+                              heading: "Add Your Song in EPK Fee —",
                               from: "Special artist song registration",
                               song_id: stat.song_id,
                               backPath: "/dashboard/add-new-song",
@@ -541,7 +546,7 @@ const AddNewSong = () => {
                   </div>
                   <div>
                     <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-1">
-                      Song Rej Reason
+                      REASON FOR SONG
                     </p>
                     <p className="text-white font-bold text-base">
                       {stat.song_rejection_reason || "-"}
@@ -549,7 +554,7 @@ const AddNewSong = () => {
                   </div>
                   <div>
                     <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-1">
-                      Payment Rej Reason
+                      REASON FOR PAYMENT
                     </p>
                     <p className="text-white font-bold text-base">
                       {stat.payment_rejection_reason || "-"}
@@ -626,6 +631,7 @@ const AddNewSong = () => {
                         ) {
                           navigate("/auth/payment", {
                             state: {
+                              heading: "Add Your Song in EPK Fee —",
                               from: "Special artist song registration",
                               song_id: stat.song_id,
                               backPath: "/dashboard/add-new-song",
@@ -647,6 +653,7 @@ const AddNewSong = () => {
                         } else if (status === "payment rejected") {
                           navigate("/auth/payment", {
                             state: {
+                              heading: "Add Your Song in EPK Fee —",
                               from: "Special artist song registration",
                               song_id: stat.song_id,
                               backPath: "/dashboard/add-new-song",

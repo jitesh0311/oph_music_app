@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { useOutletContext } from "react-router-dom";
 import NavbarRight from "../../components/Navbar/NavbarRight";
 import NavbarLeft from "../../components/Navbar/NavbarLeft";
-import FilterSelect from "../../components/FilterSelect/FilterSelect"
+import FilterSelect from "../../components/FilterSelect/FilterSelect";
 
 export default function TVPublishing() {
   const [loading, setLoading] = useState(false);
@@ -231,7 +231,17 @@ export default function TVPublishing() {
 
   return (
     <div className="min-h-[calc(100vh-70px)] text-gray-100 px-[16px] py-[16px] lg:px-8 lg:p-6">
-      {loading && <Loading />}
+      {loading && (
+        <div className="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-400"></div>
+          <p className="mt-4 text-cyan-400 text-center max-w-[800px]">
+            🎵 India's First Music Community Platform - Somewhere out there,
+            someone could be looking for exactly what you create. We’re building
+            a community helps discover artists, opportunities, and grow
+            together.
+          </p>
+        </div>
+      )}
       {!loading && (
         <div
           className={`space-y-8 relative ${
@@ -474,7 +484,7 @@ export default function TVPublishing() {
                             checked={agreement}
                             onChange={(e) => setAgreement(e.target.checked)}
                           />
-                          <span>Agree with terms and conditions.</span>
+                          <span>I Have Read and Agree to the Terms & Conditions.</span>
                         </label>
                       </div>
 

@@ -999,9 +999,9 @@ export default function AudioMetadataForm() {
       {isLoading && (
         <div className="text-center py-4 min-h-[calc(100dvh-170px)] flex justify-center items-center flex-col">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400 mx-auto"></div>
-          <p className="mt-2 text-cyan-400">
-            OPH Community is delighted to have you here! Joining the OPH
-            Community will be one of the best decisions you ever make.
+          <p className="mt-2 text-cyan-400 max-w-[800px] ">
+            India's First Music Community Platform - Somewhere out there, someone could be looking for exactly what you create. We’re building a community that helps discover those artists, find opportunities, and grow together.
+
           </p>
         </div>
       )}

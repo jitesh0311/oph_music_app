@@ -848,7 +848,7 @@ export default function RegisterSongForm() {
       return (
         <div className="space-y-2">
           <label className="block">
-            Release Date <span className="text-red-500">*</span>
+            Select & Block Release Date <span className="text-red-500">*</span>
           </label>
           {/* <select
             name="release_date"
@@ -900,7 +900,7 @@ export default function RegisterSongForm() {
     return (
       <div className="space-y-2">
         <label className="block">
-          Release Date <span className="text-red-500">*</span>
+          Select & Block Release Date <span className="text-red-500">*</span>
         </label>
         <input
           type="date"
@@ -1080,11 +1080,10 @@ export default function RegisterSongForm() {
             {projectType !== "new project" && (
               <div className="space-y-2">
                 <span className="text-gray-400">
-                  *This song is Available on Music platform or the song is free
-                  for profit beats{" "}
+                  *Please confirm whether this song is already available on any music platform, or the beats used is a Free-for-Profit Beats.{" "}
                 </span>
                 <label className="block">
-                  This song is available on music platform:
+                  Select the Answer that Applies to the Song:
                 </label>
                 <div className="flex items-center gap-4">
                   <label className="flex items-center gap-2">
@@ -1251,7 +1250,7 @@ export default function RegisterSongForm() {
                   onChange={agreementHandler}
                   className="text-cyan-400 bg-gray-800 border-gray-700 focus:ring-cyan-400 rounded"
                 />
-                <span>Agree with terms and conditions</span>
+                <span>I have Read and Agree to the Terms & Conditions</span>
               </label>
             </div>
 

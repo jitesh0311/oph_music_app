@@ -378,7 +378,7 @@ export default function KPIDashboard() {
             <Chart
               type="bar"
               data={kpiData?.eventsData || []}
-              title="Event participation (accepted)"
+              title="Event participation (Only Approved)"
               subtitle="In Numbers"
               metric={`${kpiData?.eventsData.reduce(
                 (sum, item) => sum + item.value,

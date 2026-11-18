@@ -455,9 +455,9 @@ const MYEPK = () => {
                   <thead>
                     <tr className="text-gray-400 border-b border-gray-800">
                       <th className="pb-3 px-1 text-center">#</th>
-                      <th className="pb-3 px-1 text-center">SONG'S NAME</th>
-                      <th className="pb-3 px-1 text-center">PLAYS</th>
-                      <th className="pb-3 px-1 text-center">TIME</th>
+                      <th className="pb-3 px-1 text-center">SONGS NAME</th>
+                      <th className="pb-3 px-1 text-center">LISTENERS</th>
+                      <th className="pb-3 px-1 text-center">DURATION</th>
                       <th className="pb-3 px-1 text-center">PLAY</th>
                     </tr>
                   </thead>

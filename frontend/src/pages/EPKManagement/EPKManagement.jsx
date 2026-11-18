@@ -95,7 +95,7 @@ const EPKManagement = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-      // console.log(formData.updateImages.length);
+    // console.log(formData.updateImages.length);
 
     const hasData =
       (formData.bio && formData.bio.trim() !== "") ||
@@ -113,9 +113,6 @@ const EPKManagement = () => {
 
       setLoading(true);
       const sendFormData = new FormData();
-
-    
-      
 
       sendFormData.append("ophid", ophid);
       if (formData.bio !== "") {
@@ -162,7 +159,7 @@ const EPKManagement = () => {
           setLoading(false);
           navigate("/dashboard/pending", {
             state: {
-              heading: "Your request is under review",
+              heading: "Your Profile Details Is Successfully Submitted for Review!",
               btnText: "Back to Home",
               redirectTo: "/dashboard",
             },
@@ -216,7 +213,7 @@ const EPKManagement = () => {
 
               <textarea
                 className="w-full h-[150px]  w-full bg-gray-800/50 border rounded-lg border-gray-700 p-3 focus:outline-none focus:border-cyan-400"
-                placeholder="Type your name  here"
+                placeholder="Type your bio here"
                 value={formData.bio}
                 onChange={(e) =>
                   setFormData((prev) => ({
@@ -285,12 +282,12 @@ const EPKManagement = () => {
             </div>
             <div>
               <p className="text-[17px] font-semibold text-white mt-[24px] md:mt-[32px] mb-[12px]">
-                Change Artist Story :
+                Change you Artist Story :
               </p>
               <input
                 type="text"
                 className="w-full bg-gray-800/50 border border-gray-700 rounded-full p-3 focus:outline-none focus:border-cyan-400"
-                placeholder="Type ypour story here"
+                placeholder="Type your story here"
                 onChange={(e) =>
                   setFormData((prev) => ({
                     ...prev,
@@ -302,7 +299,7 @@ const EPKManagement = () => {
 
             <div className="flex flex-col gap-[12px] mt-[36px]">
               <p className="text-[17px] font-semibold text-white">
-                Artist Story video :
+                Change your Artist Story Video :
               </p>
 
               <div
@@ -359,14 +356,14 @@ const EPKManagement = () => {
                   Your Profile Photo
                 </p>
                 <p className="text-white font-medium text-[20px] hidden md:flex">
-                  This image wil appear on your profile Upload a high qualty
-                  image{" "}
+                  This is the face behind your music. Upload a high-quality
+                  photo that truly represents you as an artist.{" "}
                 </p>
               </div>
             </div>
             <p className="text-white font-medium text-[18px] flex md:hidden mt-[16px]">
-              This image wil appear on your profile Upload a high qualty
-              image{" "}
+              This is the face behind your music. Upload a high-quality photo
+              that truly represents you as an artist.{" "}
             </p>
             <div
               className="
@@ -391,7 +388,7 @@ const EPKManagement = () => {
                 <div className="flex items-center flex-col gap-3">
                   <Plus className="w-8 h-8 text-gray-500" />
                   <p className="font-medium text-[#666B76] text-[15px]">
-                    Upload Your File
+                    Upload Image File
                   </p>
                 </div>
               ) : (
@@ -407,7 +404,7 @@ const EPKManagement = () => {
               )}
             </div>
             <p className="text-white font-medium text-[32px] md:text-[40px] mt-[20px] md:mt-[35px] mb-[6px] md:mb-[25px]">
-              Your Profile feed
+              FEED IMAGE
             </p>
 
             <div className="flex flex-col gap-[12px]">
@@ -435,7 +432,7 @@ const EPKManagement = () => {
                   <div className="flex items-center flex-col gap-3">
                     <Plus className="w-8 h-8 text-gray-500" />
                     <p className="font-medium text-[#666B76] text-[21px]">
-                      Upload Your File
+                      Upload Image File
                     </p>
                   </div>
                 ) : (
@@ -454,15 +451,15 @@ const EPKManagement = () => {
               </div>
             </div>
 
-            <p className="text-white font-medium text-[24px] md:text-[35px] mt-[20px] md:mt-[35px]">
-              Add New Song
+            <p className="text-white font-medium text-[14px] md:text-[20px] mt-[20px] md:mt-[35px]">
+              ADD SONG TO YOUR PROFILE (Adding Process of Song is Separate from Profile Details)
             </p>
             <Link
               to="/dashboard/add-new-song"
               className="bg-[#6F4FA0] text-white text-center px-[36px] py-[17px] rounded-[42px] mt-[15px] md:mt-[30px] w-full md:max-w-[300px] 
 hover:bg-[#5A3F85] "
             >
-              Add Your Song
+             Upload Song Details
             </Link>
           </div>
         </div>
@@ -484,18 +481,18 @@ hover:bg-[#5A3F85] "
             className="ml-[33px] text-[20px] font-semibold text-white"
             for="terms"
           >
-            Agree to terms and conditions{" "}
+            I Have Read and Agree to the Terms & Conditions{" "}
           </label>
         </div>
         <button className="w-full md:w-[374px] mx-auto bg-cyan-400 text-gray-900 rounded-full py-3 font-semibold hover:bg-cyan-300 transition-colors mb-[20px]">
-          SUBMIT
+          Submit Profile Details
         </button>
       </form>
 
       {status.length > 0 && (
         <section className="mb-[20px]">
           <h1 className="font-extrabold text-[35px] lg:text-[55px] mt-[20px] md:mt-[55px] text-[#5DC9DE]">
-            Status
+            GET YOUR UPDATE STATUS
           </h1>
 
           {/* Mobile card layout */}
@@ -504,49 +501,87 @@ hover:bg-[#5A3F85] "
               <div key={index}>
                 <div className="grid grid-cols-2 gap-y-4 py-5">
                   <div>
-                    <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-1">Date</p>
+                    <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-1">
+                      Date
+                    </p>
                     <p className="text-white font-bold text-base">
-                      {new Date(stat.date).toLocaleDateString("en-GB", { timeZone: "Asia/Kolkata" })}
+                      {new Date(stat.date).toLocaleDateString("en-GB", {
+                        timeZone: "Asia/Kolkata",
+                      })}
                     </p>
                   </div>
                   <div>
-                    <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-1">Request</p>
-                    <p className="text-white font-bold text-base uppercase">{stat.field} Update</p>
+                    <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-1">
+                      YOUR REQUESTS 
+                    </p>
+                    <p className="text-white font-bold text-base uppercase">
+                      {stat.field} Update
+                    </p>
                   </div>
                   <div>
-                    <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-1">Status</p>
-                    <p className="text-white font-bold text-base uppercase">{stat.status}</p>
+                    <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-1">
+                      Status
+                    </p>
+                    <p className="text-white font-bold text-base uppercase">
+                      {stat.status}
+                    </p>
                   </div>
                   <div>
-                    <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-1">Reason</p>
-                    <p className="text-white font-bold text-base">{stat.reason || "-"}</p>
+                    <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-1">
+                      Reason
+                    </p>
+                    <p className="text-white font-bold text-base">
+                      {stat.reason || "-"}
+                    </p>
                   </div>
                 </div>
-                {index < status.length - 1 && <div className="border-b border-[#FFFFFF33]" />}
+                {index < status.length - 1 && (
+                  <div className="border-b border-[#FFFFFF33]" />
+                )}
               </div>
             ))}
           </div>
 
           {/* Desktop table */}
-          <div className="hidden lg:block" style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
-            <table className="border-collapse mt-[41px]" style={{ minWidth: "600px", width: "100%" }}>
+          <div
+            className="hidden lg:block"
+            style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}
+          >
+            <table
+              className="border-collapse mt-[41px]"
+              style={{ minWidth: "600px", width: "100%" }}
+            >
               <thead>
                 <tr className="border-b border-b-[#FFFFFF33] text-left">
                   <th className="pb-[14px] text-[15px] font-semibold">DATE</th>
-                  <th className="pb-[14px] text-[15px] font-semibold">REQUEST</th>
-                  <th className="pb-[14px] text-[15px] font-semibold">STATUS</th>
-                  <th className="pb-[14px] text-[15px] font-semibold">REASON</th>
+                  <th className="pb-[14px] text-[15px] font-semibold">
+                    REQUEST
+                  </th>
+                  <th className="pb-[14px] text-[15px] font-semibold">
+                    STATUS
+                  </th>
+                  <th className="pb-[14px] text-[15px] font-semibold">
+                    REASON
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {status.map((stat, index) => (
                   <tr key={index}>
                     <td className="py-[12px] font-bold text-[16px]">
-                      {new Date(stat.date).toLocaleDateString("en-GB", { timeZone: "Asia/Kolkata" })}
+                      {new Date(stat.date).toLocaleDateString("en-GB", {
+                        timeZone: "Asia/Kolkata",
+                      })}
                     </td>
-                    <td className="py-[12px] font-bold text-[16px]">{stat.field} update</td>
-                    <td className="py-[12px] font-bold text-[16px]">{stat.status}</td>
-                    <td className="py-[12px] font-bold text-[16px]">{stat.reason || "-"}</td>
+                    <td className="py-[12px] font-bold text-[16px]">
+                      {stat.field} update
+                    </td>
+                    <td className="py-[12px] font-bold text-[16px]">
+                      {stat.status}
+                    </td>
+                    <td className="py-[12px] font-bold text-[16px]">
+                      {stat.reason || "-"}
+                    </td>
                   </tr>
                 ))}
               </tbody>

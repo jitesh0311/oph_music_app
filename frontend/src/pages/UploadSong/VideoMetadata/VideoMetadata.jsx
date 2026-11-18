@@ -485,7 +485,7 @@ export default function VideoMetadataForm() {
           if (paymentUpdateResponse.data.success) {
             navigate("/dashboard/success", {
               state: {
-                heading: "Your Song Registration has been done successfully!",
+                heading: "Your Song Is Officially Registered!",
                 btnText: "Back to Home",
                 redirectTo: "/dashboard",
               },
@@ -945,9 +945,11 @@ export default function VideoMetadataForm() {
               uploadProgress.isUploading) && (
               <div className="text-center py-4 min-h-[calc(100dvh-170px)] flex justify-center items-center flex-col">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400 mx-auto"></div>
-                <p className="mt-2 text-cyan-400">
-                  OPH Community is delighted to have you here! Joining the OPH
-                  Community will be one of the best decisions you ever make.
+                <p className="mt-2 text-cyan-400 max-w-[800px]">
+                  India's First Music Community Platform - Somewhere out there,
+                  someone could be looking for exactly what you create. We’re
+                  building a community helps discover artists, opportunities,
+                  and grow together.
                 </p>
               </div>
             )}
@@ -1067,7 +1069,7 @@ export default function VideoMetadataForm() {
                   {!hasPaidForLyricalVideo && (
                     <div className="space-y-2">
                       <label className="block">
-                        Upload Video File{" "}
+                        Select the Video File{" "}
                         <span className="text-red-500">*</span>
                       </label>
                       {formData.existing_video_url && !formData.video_file && (
@@ -1114,7 +1116,7 @@ export default function VideoMetadataForm() {
                               <span className="text-gray-500">
                                 {formData.existing_video_url
                                   ? "Upload New Video File"
-                                  : "Upload Video File"}
+                                  : "Select the Video File"}
                               </span>
                             </div>
                           )}
